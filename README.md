@@ -8,6 +8,20 @@ The console is the first segment of the AirBnB project at Holberton School that 
 * Update attributes of an object
 * Destroy an object
 
+## Resources
+1. REST API concept page
+2. [Learn REST: A RESTful Tutorial](https://alx-intranet.hbtn.io/rltoken/rycjU2GvZAlahHa61WWDBg)
+3. [Designing a RESTful API with Python and Flask](https://alx-intranet.hbtn.io/rltoken/WfKwKtaROCybta0_E849AQ)
+4. [HTTP access control (CORS)](https://alx-intranet.hbtn.io/rltoken/D55IFF8lgZDLPyIX6b6C5A)
+5. [Flask cheatsheet](https://alx-intranet.hbtn.io/rltoken/L01qANfgx0al8_an4mtPuw)
+6. [What are Flask Blueprints, exactly?](https://alx-intranet.hbtn.io/rltoken/QxbV8TCzNl3oP9br8CV5Lw)
+7. [Flask](https://alx-intranet.hbtn.io/rltoken/OLWDl7iDVpWKykekaznWpQ)
+8. [Modular Applications with Blueprints](https://alx-intranet.hbtn.io/rltoken/y3Lhj6w1g59MA_HPtc578w)
+9. [Flask tests](https://alx-intranet.hbtn.io/rltoken/UGo4ArPFHhx-ow2QtZWILA)
+10. [Flask-CORS](https://alx-intranet.hbtn.io/rltoken/vq8ER3xb99-N2anC-zke3A)
+11. [AirBnB clone - RESTful API](https://alx-intranet.hbtn.io/rltoken/ri_5_y_TwNGI2gOHW_CaVg)
+
+
 ## Table of Content
 * [Environment](#environment)
 * [Installation](#installation)
