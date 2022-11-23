@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Blueprint for api """
-from api.v1.views.states import *
 from api.v1.views.index import *
+from api.v1.views.states import *
 from flask import Blueprint
 
 
