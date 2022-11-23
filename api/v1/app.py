@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """ Flask Application """
+import os
 from flask import Flask
 from models import storage
-from .views.app_views import app_views
+from api.v1.views import app_views
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
@@ -16,8 +17,8 @@ def close_storage(error):
 
 if __name__ == "__main__":
     """Main function"""
-    host = environ.get('HBNB_API_HOST')
-    port = environ.get('HBNB_API_PORT')
+    host = os.environ.get('HBNB_API_HOST')
+    port = os.environ.get('HBNB_API_PORT')
 
     if not host:
         host = '0.0.0.0'
