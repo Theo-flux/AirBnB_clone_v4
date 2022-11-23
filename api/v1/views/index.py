@@ -15,13 +15,13 @@ classes = {"Amenity": Amenity, "City": City, "Place": Place,
            "Review": Review, "State": State, "User": User}
 
 
-@app_views.route('/status')
+@app_views.route('/status', methods=['GET'])
 def status():
     """ returns status of Ok! """
     return jsonify({"status": "Ok"})
 
 
-@app_views.route('/stats')
+@app_views.route('/stats', methods=['GET'])
 def stats():
     """ An endpoint that retrieves the number of each objects by type """
     newObj = {}
