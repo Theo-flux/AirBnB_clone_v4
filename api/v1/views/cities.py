@@ -13,10 +13,12 @@ def get_cities_by_state_id(state_id):
     """ Retrieves the list of all City objects of a State """
     all_city = storage.all(City)
     city_list = []
+    time = "%Y-%m-%dT%H:%M:%S"
 
     for city in all_city.values():
         if city.state_id == state_id:
-            city_list.append(city.to_dict())
+            city_list.append(city.my_to_dict())
+            
 
     if city_list:
         return jsonify(city_list)
@@ -30,7 +32,7 @@ def get_cities_by_city_id(city_id):
     city_by_id = storage.get(City, city_id)
 
     if city_by_id:
-        return jsonify(city_by_id.to_dict())
+        return jsonify(city_by_id.my_to_dict())
 
 
 @app_views.route("/states/<state_id>/cities",
