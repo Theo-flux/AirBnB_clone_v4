@@ -11,8 +11,8 @@ from models.state import State
 from models.user import User
 
 
-classes = {"Amenity": Amenity, "City": City, "Place": Place,
-           "Review": Review, "State": State, "User": User}
+classes = {"amenities": Amenity, "cities": City, "places": Place,
+           "reviews": Review, "states": State, "users": User}
 
 
 @app_views.route('/status', methods=['GET'], strict_slashes=False)
@@ -26,6 +26,6 @@ def stats():
     """ An endpoint that retrieves the number of each objects by type """
     newObj = {}
     for key, value in classes.items():
-        newObj["{}s".format(key.lower())] = storage.count(value)
+        newObj[key.lower()] = storage.count(value)
 
     return jsonify(newObj)
