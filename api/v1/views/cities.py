@@ -19,7 +19,7 @@ def get_cities_by_state_id(state_id):
             city_list.append(city.to_dict())
 
     if city_list:
-        return jsonify(city_list.to_dict())
+        return jsonify(city_list)
     else:
         return abort(404)
 
@@ -70,3 +70,16 @@ def get_city_id(city_id):
             setattr(city, key, value)
     storage.save()
     return (jsonify(city.to_dict()), 200)
+
+
+@app_views.route('/cities/<city_id>', methods=['DELETE'], strict_slashes=False)
+def delete_city_by_id(city_id):
+    """ Delete a city """
+    city = storage.get(City, city_id)
+
+    if city:
+        storage.delete(city)
+        storage.save()
+        return (jsonify({}), 200)
+    else:
+        abort(404)
