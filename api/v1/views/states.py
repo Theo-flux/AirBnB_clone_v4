@@ -6,8 +6,8 @@ from models import storage
 from models.state import State
 
 
-@app_views.route('/states', methods=['GET'])
-@app_views.route('/state/<state_id>', methods=['GET'])
+@app_views.route('/states', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['GET'], strict_slashes=False)
 def get_states(state_id=None):
     """ Retrieves the list of all State objects or state by id """
     if state_id:
@@ -26,7 +26,7 @@ def get_states(state_id=None):
         return jsonify(state_list)
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE'])
+@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
 def delete_state_by_id(state_id=None):
     """ Deletes a State object by id """
     if state_id:
@@ -40,14 +40,13 @@ def delete_state_by_id(state_id=None):
             abort(404)
 
 
-@app_views.route('/states', methods=['POST'])
+@app_views.route('/states', methods=['POST'], strict_slashes=False)
 def create_state():
     """ Create a state obj """
-    res = request.get_json()
-    if (not res.json):
+    if not request.json:
         abort(404, description="Not a JSON")
 
-    if 'name' not in res.json:
+    if 'name' not in request.json:
         abort(404, description="Missing name")
 
     data = request.json
@@ -56,7 +55,7 @@ def create_state():
     return (jsonify(instance.to_dict()), 201)
 
 
-@app_views.route('/states/<state_id>', methods=['PUT'])
+@app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
 def update_state_by_id(state_id=None):
     """ Update an existing state obj """
     if not request.json:
