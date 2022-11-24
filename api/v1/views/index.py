@@ -26,6 +26,6 @@ def stats():
     """ An endpoint that retrieves the number of each objects by type """
     newObj = {}
     for key, value in classes.items():
-        newObj[key.lower()] = storage.count(value)
+        newObj["{}s".format(key.lower())] = storage.count(value)
 
     return jsonify(newObj)
