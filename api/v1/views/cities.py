@@ -47,14 +47,13 @@ def create_city(state_id):
         abort(404, description="Missing name")
 
     data = request.json
-    data["state_id"] = state_id
     instance = City(**data)
     instance.save()
     return (jsonify(instance.to_dict()), 201)
 
 
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
-def get_city_id(city_id):
+def update_city_id(city_id):
     """ Get city by id """
     if not request.json:
         abort(400, description="Not a JSON")
