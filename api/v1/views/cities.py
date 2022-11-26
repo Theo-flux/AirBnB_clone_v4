@@ -18,7 +18,6 @@ def get_cities_by_state_id(state_id):
     for city in all_city.values():
         if city.state_id == state_id:
             city_list.append(city.my_to_dict())
-            
 
     if city_list:
         return jsonify(city_list)
