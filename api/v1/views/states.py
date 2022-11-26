@@ -16,13 +16,13 @@ def get_states(state_id=None):
         if not state_by_id:
             abort(404)
         else:
-            return jsonify(state_by_id.my_to_dict())
+            return jsonify(state_by_id.to_dict())
     else:
         all_states = storage.all(State)
         state_list = []
 
         for state in all_states.values():
-            state_list.append(state.my_to_dict())
+            state_list.append(state.to_dict())
         return jsonify(state_list)
 
 
