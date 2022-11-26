@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ State View """
-from flask import jsonify, abort, request
+from flask import jsonify, abort, request, make_response
 from api.v1.views import app_views
 from models import storage
 from models.state import State
@@ -37,7 +37,7 @@ def delete_state_by_id(state_id=None):
         if to_be_deleted_state:
             storage.delete(to_be_deleted_state)
             storage.save()
-            return (jsonify({}), 200)
+            return make_response((jsonify({}), 200))
         else:
             abort(404)
 
@@ -54,7 +54,7 @@ def create_state():
     data = request.get_json()
     instance = State(**data)
     instance.save()
-    return (jsonify(instance.to_dict()), 201)
+    return make_response()(jsonify(instance.to_dict()), 201)
 
 
 @app_views.route('/states/<state_id>', methods=['PUT'], strict_slashes=False)
@@ -73,4 +73,4 @@ def update_state_by_id(state_id=None):
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(state, key, value)
     storage.save()
-    return (jsonify(state.to_dict()), 200)
+    return make_response(jsonify(state.to_dict()), 200)
