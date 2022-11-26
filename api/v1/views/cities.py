@@ -40,13 +40,13 @@ def create_city(state_id):
     if not storage.get(State, state_id):
         abort(404)
 
-    if not request.json:
+    if not request.get_json():
         abort(404, description="Not a JSON")
 
-    if 'name' not in request.json:
+    if 'name' not in request.get_json():
         abort(404, description="Missing name")
 
-    data = request.json
+    data = request.get_json()
     instance = City(**data)
     instance.save()
     return (jsonify(instance.to_dict()), 201)
@@ -55,7 +55,7 @@ def create_city(state_id):
 @app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
 def update_city_id(city_id):
     """ Get city by id """
-    if not request.json:
+    if not request.get_json():
         abort(400, description="Not a JSON")
 
     city = storage.get(City, city_id)

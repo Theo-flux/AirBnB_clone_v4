@@ -70,7 +70,7 @@ def add_place(city_id):
     if not user:
         abort(404)
 
-    if "name" not in request.json:
+    if "name" not in request.get_json():
         abort(404, description="Missing name")
 
     data = request.get_json()
@@ -87,7 +87,7 @@ def update_place(place_id):
     if not place:
         abort(404)
 
-    if not request.json:
+    if not request.get_json():
         abort(404, description="Not a JSON")
 
     data = request.get_json()

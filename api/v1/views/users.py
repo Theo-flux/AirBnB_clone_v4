@@ -44,10 +44,10 @@ def delete_user_by_id(user_id):
                  methods=['POST'], strict_slashes=False)
 def create_user():
     """ Creates a user """
-    if not request.json:
+    if not request.get_json():
         abort(404, description="Not a JSON")
 
-    if 'name' not in request.json:
+    if 'name' not in request.get_json():
         abort(404, description="Missing name")
 
     data = request.get_json()
@@ -59,7 +59,7 @@ def create_user():
 @app_views.route('/users/<user_id>', methods=['PUT'], strict_slashes=False)
 def update_user_by_id(user_id):
     """ Get city by id """
-    if not request.json:
+    if not request.get_json():
         abort(400, description="Not a JSON")
 
     user = storage.get(User, user_id)

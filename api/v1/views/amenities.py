@@ -44,13 +44,13 @@ def delete_amenity(amenity_id):
 @app_views.route("/amenities", methods=['POST'], strict_slashes=False)
 def create_amenity():
     """ Create a Amenity """
-    if not request.json:
+    if not request.get_json():
         abort(404, description="Not a JSON")
 
-    if "name" not in request.json:
+    if "name" not in request.get_json():
         abort(404, description="Missng name")
 
-    data = request.json
+    data = request.get_json()
     instance = Amenity(**data)
     instance.save()
     return (jsonify(instance.to_dict()), 201)
@@ -60,7 +60,7 @@ def create_amenity():
                  methods=['PUT'], strict_slashes=False)
 def updat_amenity(amenity_id):
     """ Update an Amenity Obj """
-    if not request.json:
+    if not request.get_json():
         abort(400, description="Not a JSON")
 
     amenity = storage.get(Amenity, amenity_id)
@@ -68,7 +68,7 @@ def updat_amenity(amenity_id):
     if not amenity:
         abort(404)
 
-    data = request.json
+    data = request.get_json()
     for key, value in data.items():
         if key not in ['id', 'created_at', 'updated_at']:
             setattr(amenity, key, value)
