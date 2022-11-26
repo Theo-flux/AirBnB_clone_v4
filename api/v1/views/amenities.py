@@ -23,7 +23,7 @@ def get_amenity(amenity_id=None):
         amenity_list = []
 
         for amenity in all_amenity_obj.values():
-            amenity_list.append(amenity.my_to_dict())
+            amenity_list.append(amenity.to_dict())
 
         return (jsonify(amenity_list), 200)
 

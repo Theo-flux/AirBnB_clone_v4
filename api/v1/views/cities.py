@@ -13,7 +13,6 @@ def get_cities_by_state_id(state_id):
     """ Retrieves the list of all City objects of a State """
     all_city = storage.all(City)
     city_list = []
-    time = "%Y-%m-%dT%H:%M:%S"
 
     for city in all_city.values():
         if city.state_id == state_id:
@@ -65,7 +64,7 @@ def get_city_id(city_id):
     if not city:
         abort(404)
 
-    data = request.json
+    data = request.get_json()
     for key, value in data.items():
         if key not in ['id', 'created_at', 'updated_at', 'state_id']:
             setattr(city, key, value)
