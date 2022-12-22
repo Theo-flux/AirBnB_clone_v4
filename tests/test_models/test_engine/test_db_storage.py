@@ -14,11 +14,11 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
-from models import storage
 import json
 import os
 import pep8
 import unittest
+from models import storage
 DBStorage = db_storage.DBStorage
 classes = {"Amenity": Amenity, "City": City, "Place": Place,
            "Review": Review, "State": State, "User": User}
@@ -88,31 +88,23 @@ class TestFileStorage(unittest.TestCase):
     def test_save(self):
         """Test that save properly saves objects to file.json"""
 
-
-class TestGetAndCountFunctionDBStorage(unittest.TestCase):
-    """Test the get function in DBStorage"""
-
     def test_get_db(self):
-        """Test that gets object from file.json by id"""
-        userDict = {
-            "email": "testmail@gmail.com",
-            "password": "testpassword",
-            "first_name": "test_first_name",
-            "last_name": "test_last_name"
-        }
-        userInst = User(**userDict)
-        storage.new(userInst)
+        """ Tests method for obtaining an instance db storage"""
+        dic = {"name": "Cundinamarca"}
+        instance = State(**dic)
+        storage.new(instance)
         storage.save()
-        getInst = storage.get(User, userInst.id)
-        self.assertEqual(getInst, userInst)
+        get_instance = storage.get(State, instance.id)
+        self.assertEqual(get_instance, instance)
 
     def test_count(self):
-        """Test that counts object from file.json by classname"""
-        stateDict = {"name": "Lagos"}
-        stateInst = State(**stateDict)
-        storage.new(stateInst)
+        """ Tests count method db storage """
+        dic = {"name": "Vecindad"}
+        state = State(**dic)
+        storage.new(state)
+        dic = {"name": "Mexico", "state_id": state.id}
+        city = City(**dic)
+        storage.new(city)
         storage.save()
-        countAll = storage.count()
-        countStates = storage.count('State')
-        self.assertEqual(len(storage.all()), countAll)
-        self.assertEqual(len(storage.all('State')), countStates)
+        c = storage.count()
+        self.assertEqual(len(storage.all()), c)
