@@ -1,6 +1,24 @@
 $('documnet').ready(() => {    
     let checkBox = $('INPUT[type="checkbox"]');
     let amenities = {};
+    let apiStatusEl = $('DIV#api_status');
+
+    $.ajax({
+        method: 'GET',
+        url: `http://${window.location.hostname}:5001/api/v1/status/`,
+        success: (res) => {
+            console.log(res);
+
+            if (res.status == "OK") {
+                apiStatusEl.addClass('available');
+                // console.log("ok")
+            } else {
+                if (apiStatusEl.hasClass('available')) {
+                    apiStatusEl.removeClass("available")
+                }
+            }
+        }
+    })
 
     function addItem() {
         if (Object.values(amenities).length === 0) {
