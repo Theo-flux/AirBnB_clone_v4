@@ -7,11 +7,10 @@ $('documnet').ready(() => {
         method: 'GET',
         url: `http://${window.location.hostname}:5001/api/v1/status/`,
         success: (res) => {
-            console.log(res);
+            // console.log(res);
 
             if (res.status == "OK") {
                 apiStatusEl.addClass('available');
-                // console.log("ok")
             } else {
                 if (apiStatusEl.hasClass('available')) {
                     apiStatusEl.removeClass("available")
